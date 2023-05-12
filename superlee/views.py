@@ -7,7 +7,7 @@ from django.http import HttpResponse, JsonResponse, HttpResponseBadRequest,HttpR
 from django.template import loader
 import json,re
 from django.core.serializers import serialize
-import pandas_lite as pd
+import pandas as pd
 from django.core.files.storage import FileSystemStorage
 from .models import User_reg,intern_db,Intern_atn
 
