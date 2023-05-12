@@ -7,14 +7,10 @@ from django.http import HttpResponse, JsonResponse, HttpResponseBadRequest,HttpR
 from django.template import loader
 import json,re
 from django.core.serializers import serialize
-import pandas as pd
+import pandas_lite as pd
 from django.core.files.storage import FileSystemStorage
 from .models import User_reg,intern_db,Intern_atn
-from django.template.loader import render_to_string
-from .functions import handle_uploaded_file
-#import openpyxl
-#from openpyxl.utils import get_column_letter
-#from openpyxl.writer.excel import save_workbook
+
 BASE_DIR = Path(__file__).resolve().parent.parent
 MEDIA_ROOT = os.path.join(BASE_DIR, 'superlee/media')
 id=[]
@@ -562,38 +558,3 @@ def intern_attendance_out(request):
     else:
         template = loader.get_template('intern_atn.html')
         return HttpResponse(template.render())
-
-'''@csrf_exempt
-def mark_extract(request):
-    if request.method == 'POST':
-        form_data = request.POST
-        print(form_data)
-        cropper('./superlee/test2.jpg')
-        scan('./superlee/static/output/board.jpg')
-        sts = txtchecker('tamilnadu')
-        if sts == 'tamilnadu':
-            sslc = ['secondary', 'school', 'leaving', 'certificate']
-            for key in sslc:
-                sts = txtchecker(key)
-                print("Certificate Verifying . . . . . ")
-                if sts in key:
-                    scan('./superlee/static/output/marks.jpg')
-                    marks = numcheck2()
-                    print(marks)
-                    if len(marks) != 0:
-                        total = sum(marks)
-                        # sts=txtchecker()
-                        percentage = total / 5
-                        print(f"\nTotal Marks:{total}\nPercentage:{percentage}%")
-                        break
-                    else:
-                        print('mark not found')
-                        break
-                else:
-                    print("Certificate is Unrecognizable")
-        else:
-            print("ERROR 404")
-        return JsonResponse({'success': True}, content_type='application/json')
-    else:
-        template = loader.get_template('mark_ext.html')
-        return HttpResponse(template.render())'''
